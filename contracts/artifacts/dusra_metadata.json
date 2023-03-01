@@ -1,0 +1,58 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract Parcel",
+						"name": "par",
+						"type": "address"
+					}
+				],
+				"name": "printName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/learning.sol": "dusra"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/learning.sol": {
+			"keccak256": "0x98f85bbac71f88e6b2eb4c1a0179c9bda2bc5aa566d21ad1acc27336352c3dee",
+			"urls": [
+				"bzz-raw://1de539d4cb225e3e84f0eba3cead9380239ca6df2e8c6951dabbc703923fb7be",
+				"dweb:/ipfs/QmR74uASqAJ4sWFsqQsZmKV36VSvWHZHygm4TmPbXbhEdt"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,61 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "_id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/learning.sol": "Learner"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/learning.sol": {
+			"keccak256": "0x7a39f2c11f31ab3c20ef0a2948fff0635b455b1093c7f1a721234f48fb210ac1",
+			"urls": [
+				"bzz-raw://6d5422468f0c7dac48b438fd0bfd4f87d518ad8a877792513a7dc233b7947f5c",
+				"dweb:/ipfs/QmcSPXhVtVp6BBVZYTacHpSAeAv23AbL1iDcmXs35PuRdy"
+			]
+		}
+	},
+	"version": 1
+}
