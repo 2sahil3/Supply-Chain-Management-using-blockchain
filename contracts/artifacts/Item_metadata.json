@@ -6,6 +6,42 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "item_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "time_stamp",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "mfg_date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "expiry_date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "batch_no",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numOfItem",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [],
 				"name": "batchNo",
 				"outputs": [
@@ -16,6 +52,45 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "item_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "time_stamp",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "mfg_date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "expiry_date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "batch_no",
+						"type": "string"
+					}
+				],
+				"name": "createHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -32,10 +107,22 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "generateQrCode",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_messageHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "getEthSignedMessageHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -117,6 +204,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "numberOfItem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -157,13 +257,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "signDigitally",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "timestamp",
 				"outputs": [
 					{
@@ -173,20 +266,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "verifyForDistributor",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "verifyForPharmacist",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -203,7 +282,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/supply_chain.sol": "supplychain"
+			"contracts/supply_chain.sol": "Item"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -218,11 +297,11 @@
 	},
 	"sources": {
 		"contracts/supply_chain.sol": {
-			"keccak256": "0x6892d0567901a3f08ab2cb459014e374547ffb00611430f45f8bcb0daefc4679",
+			"keccak256": "0x408671b0fffa9209620e5d9a2c80ceca7bbc7a0029c2c670fa9e42e932d64dcd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://4e5f76605b5b56657f539fbcf198e40162d35ed084ff5e545af0916aac83e330",
-				"dweb:/ipfs/QmdMkfnqwDy3nXqQrvquNBaJQxgQZznQhsFswK8QpbBKXP"
+				"bzz-raw://b6b0b740c67c9ae4ef6ca18ff108f9aff5b074b69a3e5d8b6f38b8ac25b2cf13",
+				"dweb:/ipfs/QmdfZ4eyzbbes8ZvjJikkUub1EbvBVjCeoUQXtCAZiZtER"
 			]
 		}
 	},

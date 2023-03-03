@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/supply_chain.sol": "B"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/supply_chain.sol": {
+			"keccak256": "0x799e65a864c3bedd6a27b9463a6586d4a32178855bdbbcf08702b8cb8f775eff",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://319778e6fec4d2c7b3f655c87ee69604d28558a5c24b0f4e1d8804f804c3408f",
+				"dweb:/ipfs/Qme7mJ3TrVVaADLCkzHnny5j3qnqWa2HZGzmTtxjvjZMvb"
+			]
+		}
+	},
+	"version": 1
+}
