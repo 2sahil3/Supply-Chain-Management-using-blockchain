@@ -6,37 +6,61 @@ contract Contract_supplychain
 {
     struct Product
     {
-        string  timestamp;
         string  itemName;
         string mfgDate;
         string expiryDate;
         string batchNo;
-        uint  numberOfItem;
-        uint productId;
+        string current_history;
+        uint ID;
+        uint numberOfItem;
+        address addr;
+        int par;
     }
+    
     uint public runningProductId=0;
+    mapping(address=>uint[]) findMap;
     Product[] public products;
-    function createProduct(string memory item_name,string memory time_stamp,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem ) public
-    {
+    function createProduct(string memory item_name,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem, string memory ch,int par,address aadress ) public
+    {   if(par==-1){
         Product memory p1;
-        p1.timestamp = time_stamp;
         p1.itemName = item_name;
         p1.mfgDate = mfg_date;
         p1.expiryDate = expiry_date;
         p1.batchNo = batch_no;
+        p1.current_history=ch;
         p1.numberOfItem = numOfItem;
-        p1.productId = runningProductId;
+        p1.ID = runningProductId;
         runningProductId++;
+        p1.par=par+1;
         products.push(p1);
+
+    }
+        else{
+            require(products[uint(par)].numberOfItem>=numOfItem);
+            Product memory p1;
+            p1.itemName = item_name;
+            p1.mfgDate = mfg_date;
+            p1.expiryDate = expiry_date;
+            p1.batchNo = batch_no;
+            p1.current_history=ch;
+            p1.numberOfItem = numOfItem;
+            p1.ID = runningProductId;
+            runningProductId++;
+            p1.par=par+1;
+            products.push(p1);
+            products[uint(par)].numberOfItem-=numOfItem;
+        }
         
     }
-    function getLastIndex() public returns(Product memory){
-        Product memory xero;
-        xero.productId=1;
-        if(products.length==0)return xero;
-        return products[products.length-1];
-    }
 
+     function findProd(address person) public returns (Product[] memory){
+         Product[] memory arr;
+         
+     }
+    function getLastIndex() public view returns(uint)
+    {
+        return runningProductId;
+    }
     function getProductDetails(uint productId) public view returns( Product memory) 
     {
         return products[productId];
