@@ -4,22 +4,34 @@ pragma solidity >=0.7.0 <0.9.0;
 
 contract Contract_supplychain
 {
+
+    struct State
+    {
+        string timestamp;
+        string location;
+    }
+
     struct Product
     {
-        string  timestamp;
         string  itemName;
+        // string  timestamp;
         string mfgDate;
         string expiryDate;
         string batchNo;
         uint  numberOfItem;
         uint productId;
+        State[] history;
     }
+
+    // mapping(address => role)
+
+
     uint public runningProductId=0;
     Product[] public products;
-    function createProduct(string memory item_name,string memory time_stamp,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem ) public
+    function createProduct(string memory item_name,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem ) public
     {
         Product memory p1;
-        p1.timestamp = time_stamp;
+        // p1.timestamp = time_stamp;
         p1.itemName = item_name;
         p1.mfgDate = mfg_date;
         p1.expiryDate = expiry_date;
@@ -27,10 +39,24 @@ contract Contract_supplychain
         p1.numberOfItem = numOfItem;
         p1.productId = runningProductId;
         runningProductId++;
-        products.push(p1);
-        
+        // require(msg.sender == manufacturer);
+        // addstate() call this function to add the state
     }
-    function getLastIndex() public returns(Product memory){
+
+    function addState(uint product_id, string memory timestamp, string memory location) public 
+    {
+        State memory s1;
+        s1.timestamp = timestamp;
+        s1.location = location;
+        products[product_id].history.push(s1);
+    }
+
+    function getLastIndex() public view returns(uint)
+    {
+        return runningProductId;
+    }
+
+    function getLastProduct() public view returns(Product memory){
         Product memory xero;
         xero.productId=1;
         if(products.length==0)return xero;
