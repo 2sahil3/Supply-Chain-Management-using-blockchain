@@ -16,26 +16,32 @@ def manufacturer_page():
         batchNo = request.form["batch-number"]
         numberUnits = int(request.form["number-units"])
 
+
+
         create_product(
             timeStamp=timeStamp,
             itemName=itemName,
             mfgDate=mfgDate,
             expiryDate=expiryDate,
             batchNo=batchNo,
-            numberUnits=numberUnits
+            numberUnits=numberUnits,
+            history = "pehle sanskar chutiya tha ab thik hai",
+            par = -1,
+            user_address = signer_account
         )
 
-        id = lastProductId()
 
-        addState(id,"123456","mumbai")
-        addState(id,"123456","dubai")
-        print(getStates(id))
+        print(lastProductId())
 
-
+        getAllProducts()
 
         return render_template('manufacturer.html', submitted=True)
 
     return render_template('manufacturer.html', submitted=False)
+
+
+
+
 
 
 if __name__ == '__main__':
