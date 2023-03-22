@@ -13,10 +13,8 @@ contract Contract_supplychain
         string current_history;
         uint ID;
         uint numberOfItem;
-        // int par; 
     }
-
-      
+ 
     uint public runningProductId=0;
     mapping(address=>Product[]) findMap;
     Product[] public products;
@@ -32,7 +30,6 @@ contract Contract_supplychain
         p1.numberOfItem = numOfItem;
         p1.ID = runningProductId;
         runningProductId++;
-        // p1.par=parent;
         findMap[user_address].push(p1);
         products.push(p1);
     }
@@ -47,7 +44,6 @@ contract Contract_supplychain
             p1.numberOfItem = numOfItem;
             p1.ID = runningProductId;
             runningProductId++;
-            // p1.par=parent;
             products.push(p1);
             findMap[user_address].push(p1);
             products[uint(parent)].numberOfItem-=numOfItem;
