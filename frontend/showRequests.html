@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pending Requests</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f8f8f8;
+		}
+		h1 {
+			text-align: center;
+			margin: 20px 0;
+			color: #333;
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+			margin: 10px;
+			padding: 20px;
+		}
+		li p {
+			margin: 5px 0;
+			font-size: 16px;
+			color: #333;
+		}
+		li p:first-child {
+			font-weight: bold;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Pending Requests</h1>
+	{% if requests %}
+		<ul>
+			{% for request in requests %}
+				<li>
+					<p>Request ID: {{ request.req_id }}</p>
+					<p>From: {{ request.req_from }}</p>
+					<p>Product Name: {{ request.productName }}</p>
+					<p>Number of Items: {{ request.numOfItem }}</p>
+					<p>Message: {{ request.message }}</p>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No pending requests.</p>
+	{% endif %}
+</body>
+</html>

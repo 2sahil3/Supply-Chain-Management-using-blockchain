@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Manufacturer Page</title>
+    <style>
+    .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    }
+
+    h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    }
+
+    .buttons {
+    margin-top: 50px;
+    }
+
+    button {
+    padding: 10px 20px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    margin: 0 10px;
+    }
+
+    button:hover {
+    background-color: #3e8e41;
+    }
+
+    .create {
+    background-color: #4CAF50;
+    }
+
+    .list {
+    background-color: #008CBA;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Manufacturer Name</h1>
+      <div class="buttons">
+        <a href="{{url_for('requests')}}"><button class="create">Requests</button></a>
+        <a href="{{url_for('list_products')}}"><button class="list">List all Products</button></a>
+      </div>
+    </div>
+  </body>
+</html>
