@@ -32,9 +32,15 @@ contract Contract_supplychain
         runningProductId++;
         findMap[user_address].push(p1);
         products.push(p1);
-        }
+    }
         else{
-            require(products[uint(parent)].numberOfItem>=numOfItem);
+            for(int i=0;uint(i)<findMap[user_address].length;i++){
+                if(findMap[user_address][uint(i)].ID==uint(parent))
+                {   parent=i;
+                    break;
+                }
+            }
+            require(findMap[user_address][uint(parent)].numberOfItem>=numOfItem);
             Product memory p1;
             p1.itemName = item_name;
             p1.mfgDate = mfg_date;
@@ -46,7 +52,7 @@ contract Contract_supplychain
             runningProductId++;
             products.push(p1);
             findMap[user_address].push(p1);
-            products[uint(parent)].numberOfItem-=numOfItem;
+            findMap[user_address][uint(parent)].numberOfItem-=numOfItem;
         }
         
     }
@@ -70,6 +76,7 @@ contract Contract_supplychain
         return products[productId];
     }
 
+}
     
     // function createHash(string memory item_name,string memory time_stamp,string memory mfg_date, string memory expiry_date, string memory batch_no ) public pure returns(bytes32)// allowed only for manufacturer and distributer
     // {
@@ -87,4 +94,3 @@ contract Contract_supplychain
     //         );
     // }
 
-}
