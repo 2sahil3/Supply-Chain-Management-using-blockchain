@@ -32,7 +32,7 @@ contract Contract_supplychain
         runningProductId++;
         findMap[user_address].push(p1);
         products.push(p1);
-    }
+        }
         else{
             require(products[uint(parent)].numberOfItem>=numOfItem);
             Product memory p1;
