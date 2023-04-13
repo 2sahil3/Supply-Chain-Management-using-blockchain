@@ -107,15 +107,15 @@
   <body>
     <form method="post">
       <h1>Product Details Form</h1>
-      <div class="input-group">
+      <!-- <div class="input-group">
         <label for="item-name">Item Name:</label>
-        <input type="text" id="item-name" name="item-name" required>
-      </div>
+        <input type="text" id="item-name" name="item-name" value="{{request.item_name}}" required>
+      </div> 
 
       <div class="input-group">
         <label for="number-units">Number of Units:</label>
         <input type="number" id="number-units" name="number-units" min="1" required>
-      </div>
+      </div>-->
 
       <div class="input-group">
         <label for="batch-number">Batch Number:</label>
@@ -123,7 +123,7 @@
       </div>
 
       <div class="input-group">
-        <label for="manufacturer-date">Manufacturer Date:</label>
+        <label for="manufacturer-date">Manufacturing Date:</label>
         <input type="date" id="manufacturer-date" name="manufacturer-date" required>
       </div>
 

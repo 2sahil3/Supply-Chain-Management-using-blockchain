@@ -16,7 +16,7 @@ import qrcode
 
 
 #initialize variables required in interface file...comment the function call while testing only flask and web2 interface things
-# interfaceInit()
+interfaceInit()
 
 app = Flask(__name__, template_folder='../frontend')
 

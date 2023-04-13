@@ -11,7 +11,7 @@ def interfaceInit():
     web3.eth.defaultAccount = web3.eth.accounts[0]
     global contract
     contract = web3.eth.contract(
-        address="0x844F4eD41DF8B318dFC419A55714A93B403A32D2", abi=ABI)
+        address="0x7342BC9f74A47b7d2d6c5fdff8CD82413424Cb96", abi=ABI)
     global signer_account
     signer_account = web3.eth.accounts[0]
 
