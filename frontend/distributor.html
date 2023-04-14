@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Manufacturer Page</title>
+    <title>Distributor</title>
     <style>
     .container {
     max-width: 800px;
@@ -45,10 +45,11 @@
   </head>
   <body>
     <div class="container">
-      <h1>Manufacturer Name</h1>
+      <h1>I am Distributor</h1>
       <div class="buttons">
-        <a href="{{url_for('create_product_page')}}"><button class="create">Create Product</button></a>
-        <a href="{{url_for('list_products')}}"><button class="list">List all Products</button></a>
+        <a href="{{url_for('makeRequest')}}"><button class="create">Requests</button></a>
+        <a href="{{url_for('showInventory')}}"><button class="list">List all Products</button></a>
+        <a href="{{url_for('pendingRequest')}}"><button class="list">Show Pending Requests</button></a>
       </div>
     </div>
   </body>

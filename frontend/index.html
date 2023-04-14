@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QR Code Generator</title>
+</head>
+
+<body>
+    <h1>QR Code Generator</h1>
+    <p>Click the button to generate a QR code and open it in a new tab:</p>
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <script>
+        function generateQRCode() {
+            // Make a GET request to the server to generate the QR code
+            fetch('/generate_qr')
+                .then(response => response.text())
+                .then(data => {
+                    // Open a new tab with the QR code
+                    const newTab = window.open();
+                    newTab.document.write(data);
+                });
+        }
+    </script>
+</body>
+
+</html>
