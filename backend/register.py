@@ -16,7 +16,7 @@ def show():
         password = request.form['password']
         confirm_password = request.form['confirm-password']
         userType = request.form['userType']
-        
+        publicAddress = request.form['publicAddress']
 
         if username and email and password and confirm_password and userType:
             if password == confirm_password:
@@ -27,7 +27,8 @@ def show():
                         username=username,
                         email=email,
                         password=hashed_password,
-                        userType=userType
+                        userType=userType,
+                        web3Address = publicAddress
                     )
                     db.session.add(new_user)
                     db.session.commit()

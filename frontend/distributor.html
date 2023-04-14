@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
     <title>Distributor</title>
-</head>
-<body>
+    <style>
+    .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    }
 
-</body>
+    h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    }
+
+    .buttons {
+    margin-top: 50px;
+    }
+
+    button {
+    padding: 10px 20px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    margin: 0 10px;
+    }
+
+    button:hover {
+    background-color: #3e8e41;
+    }
+
+    .create {
+    background-color: #4CAF50;
+    }
+
+    .list {
+    background-color: #008CBA;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>I am Distributor</h1>
+      <div class="buttons">
+        <a href="{{url_for('makeRequest')}}"><button class="create">Requests</button></a>
+        <a href="{{url_for('showInventory')}}"><button class="list">List all Products</button></a>
+        <a href="{{url_for('pendingRequest')}}"><button class="list">Show Pending Requests</button></a>
+      </div>
+    </div>
+  </body>
 </html>

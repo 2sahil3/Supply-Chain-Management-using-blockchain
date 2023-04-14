@@ -43,7 +43,13 @@ ABI = '''[
 			}
 		],
 		"name": "createProduct",
-		"outputs": [],
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -106,6 +112,25 @@ ABI = '''[
 	{
 		"inputs": [],
 		"name": "getLastIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "addr",
+				"type": "address"
+			}
+		],
+		"name": "getLastProductId",
 		"outputs": [
 			{
 				"internalType": "uint256",

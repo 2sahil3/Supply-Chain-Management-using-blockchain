@@ -16,7 +16,7 @@ import qrcode
 
 
 #initialize variables required in interface file...comment the function call while testing only flask and web2 interface things
-# interfaceInit()
+interfaceInit()
 
 app = Flask(__name__, template_folder='../frontend')
 
@@ -64,12 +64,12 @@ def create_product_page():
     if request.method == "POST":
         timeStamp = str(time.time())
         requestId = request.args.get('req_id')
-        requestdata = PendingRequests.query.filter_by(req_id=requestId).first()
-        itemName = requestdata.productName
+        requestData = PendingRequests.query.filter_by(req_id=requestId).first()
+        itemName = requestData.productName
         mfgDate = request.form["manufacturer-date"]
         expiryDate = request.form["expiry-date"]
         batchNo = request.form["batch-number"]
-        numberUnits = requestdata.numOfItem
+        numberUnits = requestData.numOfItem
         userId = session['id']
         user = Users.query.filter_by(id=userId).first()
 
@@ -86,6 +86,8 @@ def create_product_page():
         )
 
         pid = getLastProductID(user.web3Address)
+        db.session.delete(requestData)
+        db.session.commit()
 
         return render_template('success.html', submitted=True, p_id=pid)
 
