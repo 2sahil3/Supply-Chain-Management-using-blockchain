@@ -89,6 +89,3 @@ contract Contract_supplychain
     }
 
 }
-
-
-}
