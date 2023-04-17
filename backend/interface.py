@@ -1,17 +1,17 @@
 from web3 import Web3
 from abi import ABI
 import time
-
 global web3, signer_account, contract
 
+
 def interfaceInit():
-    ganach_url = "http://127.0.0.1:7545"
+    ganach_url = "http://127.0.0.1:7546"
     global web3
     web3 = Web3(Web3.HTTPProvider(ganach_url))
     web3.eth.defaultAccount = web3.eth.accounts[0]
     global contract
     contract = web3.eth.contract(
-        address="0x7342BC9f74A47b7d2d6c5fdff8CD82413424Cb96", abi=ABI)
+        address="0x2A3A989d608Ec2422B40143dC809dd7faFDF752f", abi=ABI)
     global signer_account
     signer_account = web3.eth.accounts[0]
 
@@ -20,13 +20,16 @@ def selectAccount(number):
     global signer_account
     signer_account = web3.eth.accounts[number]
 
+
 timeStamp = str(time.time())
 
 
-def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnits,history,par,user_address):
+def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnits, history, par, user_address):
     global web3
-    nonce = web3.eth.get_transaction_count(signer_account)
-    addr = web3.toHex(bytes(user_address, 'utf-8'))
+    nonce = web3.eth.get_transaction_count(user_address)
+    # addr = web3.to_hex(bytes(user_address, 'utf-8'))
+    # web3.t
+    # print(user_address)
     tx = contract.functions.createProduct(
         itemName,
         mfgDate,
@@ -36,21 +39,24 @@ def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnit
         history,
         par,
         user_address
-    ).buildTransaction({'from': signer_account, 'nonce': nonce})
+    ).build_transaction({'from': user_address, 'nonce': nonce})
 
-    print("tx: " +str(tx))
+    # print("tx: " + str(tx))
 
-    signed_tx = web3.eth.account.signTransaction(
-        tx, '0x6727e3c0a0187676c78ff449e9ce460ae1b3479b10e71e59a94414865c8033bc')
+    signed_tx = web3.eth.account.sign_transaction(
+        tx, '0x743f85a8fe45a4bb52095bbcc24f9a2e0c649f47f944e52a984e4406e55fecba')
     hash_txn = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-    print("tx_hash: "+str(hash_txn))
+    # print("tx_hash: "+str(hash_txn))
 
 
-def addState(product_id, time_stamp, loc):
-    nonce = web3.eth.get_transaction_count(signer_account)
-    tx = contract.functions.addState(product_id,time_stamp,loc).buildTransaction({'from': signer_account, 'nonce': nonce})
-    signed_tx = web3.eth.account.signTransaction(tx, '0x6727e3c0a0187676c78ff449e9ce460ae1b3479b10e71e59a94414865c8033bc')
-    hash_txn = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+# def addState(product_id, time_stamp, loc):
+#     nonce = web3.eth.get_transaction_count(signer_account)
+#     tx = contract.functions.addState(product_id, time_stamp, loc).buildTransaction({
+#         'from': signer_account, 'nonce': nonce})
+#     signed_tx = web3.eth.account.signTransaction(
+#         tx, '0x743f85a8fe45a4bb52095bbcc24f9a2e0c649f47f944e52a984e4406e55fecba')
+#     hash_txn = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+
 
 def getStates(product_id):
     states = contract.functions.getState(product_id).call()
@@ -58,15 +64,20 @@ def getStates(product_id):
 # def lastGlobalProductId():
 #     return contract.functions.getLastIndex().call() -1
 
+
 def getAllProducts():
     return contract.functions.findProduct(signer_account).call()
+
 
 def get_product(productId):
     productData = contract.functions.getProductDetails(productId).call()
     return productData
+
+
 def getLastProductID(address):
     id = contract.functions.getLastProductId(address).call()
     return id
 
-interfaceInit()
 
+interfaceInit()
+# create_product()
