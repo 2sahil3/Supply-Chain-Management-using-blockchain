@@ -30,6 +30,10 @@ def show():
                 elif usertype=='distributor':
                     login_user(user)
                     return redirect('/distributor?id='+str(user.id))
+
+                elif usertype=='pharmacist':
+                    login_user(user)
+                    return redirect('/pharma?id='+str(user.id))
             else:
                 return redirect(url_for('login.show') + '?error=incorrect-password')
         else:

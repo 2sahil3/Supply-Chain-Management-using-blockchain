@@ -11,7 +11,7 @@ def interfaceInit():
     web3.eth.defaultAccount = web3.eth.accounts[0]
     global contract
     contract = web3.eth.contract(
-        address="0xF8FB2421100150Ee620c36bcd1097a530375003B", abi=ABI)
+        address="0x3BA1f2605dbe11560cf2ce7d71e0e2bdDc80a9cc", abi=ABI)
     global signer_account
     signer_account = web3.eth.accounts[0]
 
@@ -58,8 +58,8 @@ def getStates(product_id):
 # def lastGlobalProductId():
 #     return contract.functions.getLastIndex().call() -1
 
-def getAllProducts():
-    return contract.functions.findProduct(signer_account).call()
+def getAllProducts(pid):
+    return contract.functions.findProduct(pid).call()
 
 def get_product(productId):
     productData = contract.functions.getProductDetails(productId).call()
