@@ -91,10 +91,6 @@ def create_product_page():
         pid = getLastProductID(user.web3Address)
         db.session.delete(requestData)
         db.session.commit()
-<<<<<<< HEAD
-=======
-
->>>>>>> e4a6bfe656fb1753a36690794a9686c75d3cc25c
         return render_template('success.html', submitted=True, p_id=pid)
 
     return render_template('create_product.html', submitted=False)
@@ -143,6 +139,60 @@ def distributorMainPage():
     return render_template('distributor.html')
 
 
+@app.route('/distributor/createProduct', methods=['GET', 'POST'])
+def dcreate_product_page():
+
+    userId = session['id']
+    user = Users.query.filter_by(id=userId).first()
+    print(user.web3Address)
+    allProducts = getAllProducts(user.web3Address)
+
+    requestId = request.args.get('req_id')
+    requestData = PendingRequests.query.filter_by(req_id=requestId).first()
+
+    name = requestData.productName
+    items = requestData.numOfItem
+
+    validProduct = []
+
+    for item in allProducts:
+        if item[0] == name and int(item[4]) > items:
+            validProduct = item
+            break
+
+    if len(validProduct) == 0:
+        return render_template('create_product.html', notvalidProduct=True)
+    else:
+        if request.method == "POST":
+
+            timeStamp = str(time.time())
+            itemName = requestData.productName
+            mfgDate = request.form["manufacturer-date"]
+            expiryDate = request.form["expiry-date"]
+            batchNo = request.form["batch-number"]
+            numberUnits = requestData.numOfItem
+
+            create_product(
+                timeStamp=timeStamp,
+                itemName=itemName,
+                mfgDate=mfgDate,
+                expiryDate=expiryDate,
+                batchNo=batchNo,
+                numberUnits=numberUnits,
+                history="atharva achi story daalta h",
+                par=validProduct[5],
+                user_address=user.web3Address
+            )
+
+            pid = getLastProductID(user.web3Address)
+            db.session.delete(requestData)
+            db.session.commit()
+
+            return render_template('success.html', submitted=True, p_id=pid)
+
+        return render_template('create_product.html')
+
+
 @app.route('/distributor/makerequest', methods=['GET', 'POST'])
 def makeRequest():
     manufacturers = Users.query.filter_by(userType='manufacturer').all()
@@ -172,14 +222,54 @@ def makeRequest():
 
 
 @app.route('/distributor/pendingRequests')
-def pendingRequest():
+def dpendingRequest():
     dist_id = session['id']
     pending_req = PendingRequests.query.filter_by(to_id=dist_id).all()
-    return render_template('showRequests.html', requests=pending_req)
+    return render_template('dshowRequests.html', requests=pending_req)
 
 
 @app.route('/distributor/inventory', methods=['GET', 'POST'])
 def showInventory():
+    print("distributor inventory page called")
+
+
+# Pharma
+
+@app.route('/pharma')
+def pharmaMainPage():
+    return render_template('pharma.html')
+
+
+@app.route('/pharma/makerequest', methods=['GET', 'POST'])
+def pmakeRequest():
+    distributors = Users.query.filter_by(userType='distributor').all()
+    if request.method == "POST":
+
+        itemName = request.form["item-name"]
+        distributor_id = int(request.form.get('manufacturer_id'))
+        additional_message = request.form["additional_message"]
+        numOfUnits = request.form["number-units"]
+
+        try:
+            user = Users.query.filter_by(id=session['id']).first()
+            new_request = PendingRequests(
+                req_from=user.username,
+                productName=itemName,
+                numOfItem=numOfUnits,
+                to_id=distributor_id,
+                web3Address_from=user.web3Address,
+                message=additional_message
+            )
+            db.session.add(new_request)
+            db.session.commit()
+        except sqlalchemy.exc.IntegrityError:
+            print("error")
+
+    return render_template('make_request.html', manufacturers=distributors)
+
+
+@app.route('/pharma/inventory', methods=['GET', 'POST'])
+def pshowInventory():
     print("distributor inventory page called")
 
 

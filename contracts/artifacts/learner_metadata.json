@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"compiler": {
 		"version": "0.6.12+commit.27d51765"
@@ -58,4 +59,79 @@
 		}
 	},
 	"version": 1
+=======
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "_id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/learning.sol": "learner"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/learning.sol": {
+			"keccak256": "0x44ca52be99e8c3bb9d9cd7b05c68672b7640ad0871b637c97a37e60c65221489",
+			"urls": [
+				"bzz-raw://8e97ddb06c220331913be011b669b14003deeb54512c0bfdcc668017e33c70ae",
+				"dweb:/ipfs/QmYtH4jpwbfNZoHEALSfdbvRWZ2yHFL7wvHa9QFjg89iHV"
+			]
+		}
+	},
+	"version": 1
+>>>>>>> db9a660ce55136dc7197033a6c2e52696c01a6cc
 }

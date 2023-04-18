@@ -11,34 +11,36 @@ def interfaceInit():
     web3.eth.defaultAccount = web3.eth.accounts[0]
     global contract
     contract = web3.eth.contract(
-<<<<<<< HEAD
+<< << << < HEAD
         address="0x2A3A989d608Ec2422B40143dC809dd7faFDF752f", abi=ABI)
-=======
-        address="0xF8FB2421100150Ee620c36bcd1097a530375003B", abi=ABI)
->>>>>>> e4a6bfe656fb1753a36690794a9686c75d3cc25c
+
+
+== == == =
+        address = "0xF8FB2421100150Ee620c36bcd1097a530375003B", abi = ABI)
+>> >>>> > e4a6bfe656fb1753a36690794a9686c75d3cc25c
     global signer_account
-    signer_account = web3.eth.accounts[0]
+    signer_account=web3.eth.accounts[0]
 
 
 def selectAccount(number):
     global signer_account
-    signer_account = web3.eth.accounts[number]
+    signer_account=web3.eth.accounts[number]
 
 
-timeStamp = str(time.time())
+timeStamp=str(time.time())
 
 
 def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnits, history, par, user_address):
     global web3
-    nonce = web3.eth.get_transaction_count(user_address)
-<<<<<<< HEAD
+    nonce=web3.eth.get_transaction_count(user_address)
+<< << << < HEAD
     # addr = web3.to_hex(bytes(user_address, 'utf-8'))
     # web3.t
     # print(user_address)
-=======
-    addr = web3.to_hex(bytes(user_address, 'utf-8'))
->>>>>>> e4a6bfe656fb1753a36690794a9686c75d3cc25c
-    tx = contract.functions.createProduct(
+== == == =
+    addr=web3.to_hex(bytes(user_address, 'utf-8'))
+>> >>>> > e4a6bfe656fb1753a36690794a9686c75d3cc25c
+    tx=contract.functions.createProduct(
         itemName,
         mfgDate,
         expiryDate,
@@ -83,8 +85,8 @@ def getStates(product_id):
 #     return contract.functions.getLastIndex().call() -1
 
 
-def getAllProducts():
-    return contract.functions.findProduct(signer_account).call()
+def getAllProducts(pid):
+    return contract.functions.findProduct(pid).call()
 
 
 def get_product(productId):

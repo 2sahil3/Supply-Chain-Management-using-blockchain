@@ -58,20 +58,7 @@
 <body>
 	<h1>Pending Requests</h1>
 	{% if requests %}
-		<!-- <ul>
-			{% for request in requests %}
-				<li>
-					<p>Request ID: {{ request.req_id }}</p>
-					<p>From: {{ request.req_from }}</p>
-					<p>Product Name: {{ request.productName }}</p>
-					<p>Number of Items: {{ request.numOfItem }}</p>
-					<p>Message: {{ request.message }}</p>
-					<a href="{{url_for('pendingRequest')}}"><button class="list" value="{{request.req_id}}">Fulfill request</button></a>
-				</li>
-				
-			{% endfor %}
-			
-		</ul> -->
+		
 		<ul>
 			{% for request in requests %}
 			<li style="display: flex; flex-direction: column; justify-content: center;">
