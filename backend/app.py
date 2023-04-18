@@ -91,6 +91,10 @@ def create_product_page():
         pid = getLastProductID(user.web3Address)
         db.session.delete(requestData)
         db.session.commit()
+<<<<<<< HEAD
+=======
+
+>>>>>>> e4a6bfe656fb1753a36690794a9686c75d3cc25c
         return render_template('success.html', submitted=True, p_id=pid)
 
     return render_template('create_product.html', submitted=False)
