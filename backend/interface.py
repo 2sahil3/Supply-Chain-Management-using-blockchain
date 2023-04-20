@@ -11,7 +11,7 @@ def interfaceInit():
     web3.eth.defaultAccount = web3.eth.accounts[0]
     global contract
     contract = web3.eth.contract(
-        address="0x2A3A989d608Ec2422B40143dC809dd7faFDF752f", abi=ABI)
+        address="0x9227B7f225d7247e127f9735d50E45502e634509", abi=ABI)
     global signer_account
     signer_account = web3.eth.accounts[0]
 
@@ -24,11 +24,12 @@ def selectAccount(number):
 timeStamp = str(time.time())
 
 
-def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnits, history, par, user_address):
+def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnits, history, par, fromAdd, toAdd):
     global web3
-    nonce = web3.eth.get_transaction_count(user_address)
+    nonce = web3.eth.get_transaction_count(fromAdd)
 
-    addr = web3.to_hex(bytes(user_address, 'utf-8'))
+    addr = web3.to_hex(bytes(fromAdd, 'utf-8'))
+    pvt = input("prvt key tak")
     tx = contract.functions.createProduct(
         itemName,
         mfgDate,
@@ -37,13 +38,10 @@ def create_product(timeStamp, itemName, mfgDate, expiryDate, batchNo, numberUnit
         numberUnits,
         history,
         par,
-        user_address
-    ).build_transaction({'from': user_address, 'nonce': nonce})
-
-    # print("tx: " + str(tx))
-
+        fromAdd, toAdd
+    ).build_transaction({'from': fromAdd, 'nonce': nonce})
     signed_tx = web3.eth.account.sign_transaction(
-        tx, '0x17a64878f44eb58c63947e1c7f3ca6ecc46c722fba2524ec93100ae14a1944c1')
+        tx, pvt)
     hash_txn = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
     # print("tx_hash: "+str(hash_txn))
 

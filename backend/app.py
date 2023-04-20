@@ -14,7 +14,6 @@ from home import home
 import io
 import qrcode
 
-
 # initialize variables required in interface file...comment the function call while testing only flask and web2 interface things
 # interfaceInit()
 
@@ -83,9 +82,10 @@ def create_product_page():
             expiryDate=expiryDate,
             batchNo=batchNo,
             numberUnits=numberUnits,
-            history="atharva apni servicing karva chuka hai",
+            history="atharva ki gaadi rum pum pum",
             par=-1,
-            user_address=user.web3Address
+            fromAdd=user.web3Address,
+            toAdd=requestData.web3Address_from
         )
 
         pid = getLastProductID(user.web3Address)
@@ -149,29 +149,29 @@ def dcreate_product_page():
 
     requestId = request.args.get('req_id')
     requestData = PendingRequests.query.filter_by(req_id=requestId).first()
-
+    if(requestData == None):
+        return "You no request"
     name = requestData.productName
     items = requestData.numOfItem
 
     validProduct = []
 
     for item in allProducts:
-        if item[0] == name and int(item[4]) > items:
+        if item[0] == name and int(item[6]) > items:
             validProduct = item
             break
 
     if len(validProduct) == 0:
-        return render_template('create_product.html', notvalidProduct=True)
+        return render_template('dcreate_product.html', notvalidProduct=True)
     else:
         if request.method == "POST":
 
             timeStamp = str(time.time())
             itemName = requestData.productName
-            mfgDate = request.form["manufacturer-date"]
-            expiryDate = request.form["expiry-date"]
+            mfgDate = validProduct[1]
+            expiryDate = validProduct[2]
             batchNo = request.form["batch-number"]
             numberUnits = requestData.numOfItem
-
             create_product(
                 timeStamp=timeStamp,
                 itemName=itemName,
@@ -181,7 +181,9 @@ def dcreate_product_page():
                 numberUnits=numberUnits,
                 history="atharva achi story daalta h",
                 par=validProduct[5],
-                user_address=user.web3Address
+                fromAdd=user.web3Address,
+                toAdd=requestData.web3Address_from
+
             )
 
             pid = getLastProductID(user.web3Address)
@@ -190,7 +192,7 @@ def dcreate_product_page():
 
             return render_template('success.html', submitted=True, p_id=pid)
 
-        return render_template('create_product.html')
+        return render_template('dcreate_product.html')
 
 
 @app.route('/distributor/makerequest', methods=['GET', 'POST'])
@@ -230,7 +232,10 @@ def dpendingRequest():
 
 @app.route('/distributor/inventory', methods=['GET', 'POST'])
 def showInventory():
-    print("distributor inventory page called")
+    user = Users.query.filter_by(id=session['id']).first()
+    product_data = getAllProducts(user.web3Address)
+    # print(product_data)
+    return render_template('listof_products.html', product_data=product_data)
 
 
 # Pharma
