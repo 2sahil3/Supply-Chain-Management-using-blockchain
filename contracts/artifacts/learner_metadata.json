@@ -20,19 +20,6 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -48,7 +35,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/learning.sol": "learner"
+			"contracts/learning.sol": "Learner"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -63,10 +50,10 @@
 	},
 	"sources": {
 		"contracts/learning.sol": {
-			"keccak256": "0x44ca52be99e8c3bb9d9cd7b05c68672b7640ad0871b637c97a37e60c65221489",
+			"keccak256": "0x7a39f2c11f31ab3c20ef0a2948fff0635b455b1093c7f1a721234f48fb210ac1",
 			"urls": [
-				"bzz-raw://8e97ddb06c220331913be011b669b14003deeb54512c0bfdcc668017e33c70ae",
-				"dweb:/ipfs/QmYtH4jpwbfNZoHEALSfdbvRWZ2yHFL7wvHa9QFjg89iHV"
+				"bzz-raw://6d5422468f0c7dac48b438fd0bfd4f87d518ad8a877792513a7dc233b7947f5c",
+				"dweb:/ipfs/QmcSPXhVtVp6BBVZYTacHpSAeAv23AbL1iDcmXs35PuRdy"
 			]
 		}
 	},
