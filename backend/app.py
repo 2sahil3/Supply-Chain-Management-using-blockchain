@@ -13,6 +13,7 @@ from register import register
 from home import home
 import io
 import qrcode
+from datetime import datetime
 
 # initialize variables required in interface file...comment the function call while testing only flask and web2 interface things
 # interfaceInit()
@@ -74,7 +75,13 @@ def create_product_page():
         numberUnits = requestData.numOfItem
         userId = session['id']
         user = Users.query.filter_by(id=userId).first()
-
+        now = datetime.now()
+        hist = f'''manufacturer: {user.username},
+                address: {user.web3Address},
+                transferred_to: {requestData.req_from},
+                address: {requestData.web3Address_from},
+                time:{now.strftime("%m/%d/%Y, %H:%M:%S")}'''
+        
         create_product(
             timeStamp=timeStamp,
             itemName=itemName,
@@ -82,13 +89,13 @@ def create_product_page():
             expiryDate=expiryDate,
             batchNo=batchNo,
             numberUnits=numberUnits,
-            history="atharva ki gaadi rum pum pum",
+            history=hist,
             par=-1,
             fromAdd=user.web3Address,
             toAdd=requestData.web3Address_from
         )
 
-        pid = getLastProductID(user.web3Address)
+        pid = getLastProductID(requestData.web3Address_from)
         db.session.delete(requestData)
         db.session.commit()
         return render_template('success.html', submitted=True, p_id=pid)
@@ -150,7 +157,7 @@ def dcreate_product_page():
     requestId = request.args.get('req_id')
     requestData = PendingRequests.query.filter_by(req_id=requestId).first()
     if(requestData == None):
-        return "You no request"
+        return "You have no pending requests"
     name = requestData.productName
     items = requestData.numOfItem
 
@@ -170,8 +177,14 @@ def dcreate_product_page():
             itemName = requestData.productName
             mfgDate = validProduct[1]
             expiryDate = validProduct[2]
+            par_hist = validProduct[4]
             batchNo = request.form["batch-number"]
             numberUnits = requestData.numOfItem
+            now = datetime.now()
+            hist = par_hist+ ','+f'''
+                transferred_to: {requestData.req_from},
+                address: {requestData.web3Address_from},
+                time:{now.strftime("%m/%d/%Y, %H:%M:%S")}'''
             create_product(
                 timeStamp=timeStamp,
                 itemName=itemName,
@@ -179,14 +192,14 @@ def dcreate_product_page():
                 expiryDate=expiryDate,
                 batchNo=batchNo,
                 numberUnits=numberUnits,
-                history="atharva achi story daalta h",
+                history=hist,
                 par=validProduct[5],
                 fromAdd=user.web3Address,
                 toAdd=requestData.web3Address_from
 
             )
 
-            pid = getLastProductID(user.web3Address)
+            pid = getLastProductID(requestData.web3Address_from)
             db.session.delete(requestData)
             db.session.commit()
 
@@ -275,7 +288,7 @@ def pmakeRequest():
 
 @app.route('/pharma/inventory', methods=['GET', 'POST'])
 def pshowInventory():
-    print("distributor inventory page called")
+    print("pharma inventory page called")
 
 
 if __name__ == '__main__':
