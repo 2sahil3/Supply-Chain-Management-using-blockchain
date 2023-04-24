@@ -14,11 +14,18 @@ contract Contract_supplychain
         uint ID;
         uint numberOfItem;
     }
+
+// history = ' Manufacturer:abc, 
+//             transferred_to: dist_name,
+//             time: 9-jan-2023:19:19:20:23,
+//             transferred_to: pharma_name,
+//             time: 14-jan-2023:10:10:10:23 
+//              '
  
     uint public runningProductId=0;
     mapping(address=>Product[]) findMap;
     Product[] public products;
-    function createProduct(string memory item_name,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem, string memory history,int parent,address user_address ) public returns(uint)
+    function createProduct(string memory item_name,string memory mfg_date, string memory expiry_date, string memory batch_no,uint numOfItem, string memory history,int parent,address user_address,address to_Address) public returns(uint)
     {
         if(parent==-1)
         {
@@ -31,10 +38,10 @@ contract Contract_supplychain
             p1.numberOfItem = numOfItem;
             p1.ID = runningProductId;
             runningProductId++;
-            findMap[user_address].push(p1);
+            findMap[to_Address].push(p1);
             products.push(p1);
             return p1.ID;
-       
+
         }
         else{
             for(int i=0;uint(i)<findMap[user_address].length;i++){
@@ -54,8 +61,8 @@ contract Contract_supplychain
             p1.ID = runningProductId;
             runningProductId++;
             products.push(p1);
-            findMap[user_address].push(p1);
             findMap[user_address][uint(parent)].numberOfItem-=numOfItem;
+            findMap[to_Address].push(p1);
             return p1.ID;
         }
 
